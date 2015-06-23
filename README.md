@@ -44,3 +44,6 @@ Write a program to simulate an election. Create a class called **VotingSimulator
 4. Ask the ElectionManager to ***initiatePolling***
 5. Follow the instructions on the console. After each round of polling you will be asked(within the console) whether you want to continue or not.
 6. Ask the ElectionManager to ***displayResults***
+
+Hi my name is Chris, What is your name? 
+
