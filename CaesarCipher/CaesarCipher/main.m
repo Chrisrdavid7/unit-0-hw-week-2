@@ -9,14 +9,17 @@
 #import <Foundation/Foundation.h>
 
 @interface CaesarCipher : NSObject
-
+// Methods
 - (NSString *)encode:(NSString *)string offset:(int)offset;
 - (NSString *)decode:(NSString *)string offset:(int)offset;
 
+
+//Mike said to make this... WHYYyyy
+-(BOOL) codeBreaker:(NSString *) firstString with:(NSString *) secondString;
 @end
 
 
-@implementation CaesarCipher
+@implementation CaesarCipher //Class
 
 - (NSString *)encode:(NSString *)string offset:(int)offset {
     if (offset > 25) {
@@ -50,11 +53,35 @@
     return [self encode:string offset: (26 - offset)];
 }
 
+-(BOOL) codeBreaker:(NSString *) firstString with:(NSString *) secondString;{
+    
+    for (int i = 1; i < 25; i++) {
+        
+        NSString * decode = [self decode: firstString offset:(i)];
+        
+        for (int a = 1; a < 25; a++) {
+            NSString * decoded = [self decode: secondString offset:(a)];
+            
+            if ([decode isEqualToString:decoded]){
+                NSLog(@"%@ = '%@' offset: %d", firstString, decode, i);
+                NSLog(@"%@ = '%@' offset: %d", secondString, decoded, a);
+                return YES;
+        }
+    }
+}
+    return 0;
+}
 @end
 
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         
+        CaesarCipher *c = [[CaesarCipher alloc] init];
+        [c codeBreaker:@"chris" with:@"David"];
+        
+        NSString *test = @"My name is Chris";
+        
+        NSLog(@"%@",test);
     }
 }
